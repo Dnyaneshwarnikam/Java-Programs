@@ -1,0 +1,91 @@
+Q 1] what is java ? and explain feature of java?
+
+Ans:-  Java is pure object orinted language, using java we can develop as well as applications.
+
+Features of java: 1) Simple 2) Multithreded 3) Dynamic 4)Secured 5) Object Orinted 6) Platform Independent 7) Portable 
+
+8) Interpreted 9) Distributed 10) High performance 11)Robust 12) Architecture neutral
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+Q 2] What is oop and feature of oop's concept ?
+
+Ans:- oop stands for Object Orinted Programing , oop is programing standard or technique of programming based on four 
+
+pillers & Seven Features.
+
+Feature of oop: 1) Class 2) Object 3) Inheritance 4) Data abstraction and incapsulation 5) Polymorphisam 
+
+6) Dynamic Binding 7)Message Passing
+
+Pillers Of oop: 1)Inheritance 2) Abstraction 3)Incapsulation 4)Polymorphisam
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+Q 3] what is diif between semi oop & pure oop .
+
+Semi oop                                                     Pure oop
+
+1)It is allows method to exist                       1) It does not allow method withaout
+   withaout object .                                     object creation.
+ 
+2)It is declare variable as                          2) It does not declere variable as
+  globally.                                             globally.
+
+3)It include primitive data types.                   3) It lead evrything object & eliminate
+                                                        consept primitive data types.
+
+4)Does not strictly stack to oop                     4) It is strictly follows oop consept.
+  consept.
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+Q 4] what is diff between byte code & machine code.
+
+       Byte Code                                                        Machine Code
+  -------------------                                              ----------------------
+
+ 1) Byte code is interidiate code.                                 1) Machine code is low-level code.
+  
+ 2) Byte code is excute slower than                                2) Machine code is excute faster than
+    machine code.                                                     byte code.
+ 
+ 3) Byte code excute by a virtual                                  3) Machine code excute dirctly by a 
+    machine.                                                          processor or cpu.
+
+ 4) A cpu cannot understand directly                               4) Any cpu can esialy understand machine code.
+    byte code.
+                            
+----------------------------------------------------------------------------------------------------------------------------
+
+Q 5] what is byte code ?
+
+Ans: Byte code is machine understandeble code or intermediate code which is esilly convert into machine code.
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+Q 6] why java is platform independent ?
+
+Ans: platform independent means create a java code on any oprating system and excute on any other oprating syatem that's why 
+     java is platform independent.
+     or create byte code on any oprating system and excute on any other oprating syatem such as linux,unix etc. 
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

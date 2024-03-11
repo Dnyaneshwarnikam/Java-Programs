@@ -1,0 +1,271 @@
+mysql> select *from employee where salary=(select salary from employee group by salary having count(salary)>1);
++----+--------+------------------+------------+--------+
+| id | name   | email            | contact    | salary |
++----+--------+------------------+------------+--------+
+|  3 | rahul  | ram@gmail.com    | 9074844748 | 700000 |
+| 10 | ganesh | ganesh@gmail.com | 8029903303 | 700000 |
++----+--------+------------------+------------+--------+
+
+mysql> select salary,count(salary) from employee group by salary;
++--------+---------------+
+| salary | count(salary) |
++--------+---------------+
+| 700000 |             2 |
+| 500000 |             1 |
+| 100000 |             1 |
+| 900000 |             1 |
+| 200000 |             1 |
++--------+---------------+
+
+Q4. Write SQL query to display employee whose name same in table and display count of same employee? 
+
+mysql> select name,count(name) from employee group by name having count(name)>1;
++------+-------------+
+| name | count(name) |
++------+-------------+
+| lahu |           2 |
++------+-------------+
+
+Q5. Write SQL Query to display employee name whose name is  ram and occur more than 2 times in database table? 
+
+mysql> select name,count(name) from employee where name='ram' group by name having count(name)>2;
++------+-------------+
+| name | count(name) |
++------+-------------+
+| ram  |           3 |
++------+-------------+
+
+Q3. Write SQL Query to display list of employee whose name contain r any where? 
+
+mysql> select *from employee where name like'%r%';
++----+---------+------------------+------------+--------+
+| id | name    | email            | contact    | salary |
++----+---------+------------------+------------+--------+
+|  3 | rahul   | ram@gmail.com    | 9074844748 | 700000 |
+|  5 | sitaram | dipak@gmail.com  | 9929903303 | 500000 |
+|  8 | ram     | ram@gmail.com    | 9029303303 | 100000 |
+| 10 | ramesh  | ganesh@gmail.com | 8029903303 | 700000 |
++----+---------+------------------+------------+--------+
+
+Q4. Write SQL Query to display list employee whose name contain at least 3 characters? 
+
+mysql> select *from employee where name like'%___';
++----+---------+------------------+------------+--------+
+| id | name    | email            | contact    | salary |
++----+---------+------------------+------------+--------+
+|  3 | rahul   | ram@gmail.com    | 9074844748 | 700000 |
+|  5 | sitaram | dipak@gmail.com  | 9929903303 | 500000 |
+|  8 | ram     | ram@gmail.com    | 9029303303 | 100000 |
+|  9 | sham    | sham@gmail.com   | 9029903303 | 900000 |
+| 10 | ramesh  | ganesh@gmail.com | 8029903303 | 700000 |
+| 11 | lahu    | lahu@gmail.com   | 8929903303 | 200000 |
+| 12 | lahu    | lahu@gamil.com   | 322273723  | 300000 |
++----+---------+------------------+------------+--------+
+
+Q6. Write SQL Query to display the course wise student list? 
+Above query output like as 
+
+Student Name 	Course Name 
+Ram 	          JAVA 
+Ram 	          PHP 
+Shyam          	  JAVA 
+Shyam 	          PHP 
+
+mysql> select student.name,course.course_name from csjoin inner join student on student.sid=csjoin.sid inner join course on course.cid=csjoin.cid;
++------+-------------+
+| name | course_name |
++------+-------------+
+| ram  | PHP         |
+| ram  | JAVA        |
+| sham | PHP         |
+| sham | JAVA        |
++------+-------------+
+
+Q7. Write a SQL Query to show the Student count Course Wise? 
+Output Like as 
+ 
+Course Name 	Student Count 
+JAVA 	           2 
+PHP 	           2 
+.NET               0 
+
+mysql> select course.course_name,count(student.sid) from csjoin right join student on student.sid=csjoin.sid right join course on course.cid=csjoin.cid group by course.course_name;
++-------------+--------------------+
+| course_name | count(student.sid) |
++-------------+--------------------+
+| .NET        |                  0 |
+| JAVA        |                  2 |
+| PHP         |                  2 |
++-------------+--------------------+
+
+Q8. Write SQL Query to show the course list who having more than 3 students? Output like as 
+
+Course Name 	Student Count 
+JAVA 	            4 
+PHP 	            5 
+
+mysql> select course.course_name,count(student.sid) from csjoin inner join student on student.sid=csjoin.sid inner join course on course.cid=csjoin.cid grou
+p by course.course_name having count(student.sid)>3;
++-------------+--------------------+
+| course_name | count(student.sid) |
++-------------+--------------------+
+| JAVA        |                  4 |
+| PHP         |                  5 |
++-------------+--------------------+
+
+Q9. Write SQL Query to show the courses who having no admission? 
+Output Like as 
+Course Name 	Student Count 
+JAVA 	           0 
+PHP 	           0 
+
+
+mysql> select course.course_name,count(student.sid) from csjoin right join student on student.sid=csjoin.sid right join course on course.cid=csjoin.cid group by course.course_name;
++-------------+--------------------+
+| course_name | count(student.sid) |
++-------------+--------------------+
+| .NET        |                  0 |
+| JAVA        |                  4 |
+| PHP         |                  5 |
++-------------+--------------------+
+
+Q10. Write SQL Query to show the student name with highest package? 
+
+mysql> select student.name as 'Student Name',placement.package as 'Highest Package' from csjoin inner join student on student.sid=csjoin.sid inner join placement on placement.pid=csjoin.pid order by placement.package desc limit 1;
++--------------+-----------------+
+| Student Name | Highest Package |
++--------------+-----------------+
+| rajesh       |          540000 |
++--------------+-----------------+
+
+Q12. Write SQL Query to show the student name who having minimum package?
+
+mysql> select student.name as 'Student Name',placement.package as 'Minimum Package' from csjoin inner join student on student.sid=csjoin.sid inner join placement on placement.pid=csjoin.pid order by placement.package asc limit 1;
++--------------+-----------------+
+| Student Name | Minimum Package |
++--------------+-----------------+
+| ram          |          360000 |
++--------------+-----------------+
+
+Q13. Write SQL Query to show the all student list who having more than 3 lakh packages? 
+
+mysql> select student.name as 'Student Name',placement.package as 'Minimum Package' from csjoin inner join student on student.sid=csjoin.sid inner join placement on placement.pid=csjoin.pid where placement.package>360000;
++--------------+-----------------+
+| Student Name | Minimum Package |
++--------------+-----------------+
+| sham         |          450000 |
+| rajesh       |          540000 |
++--------------+-----------------+
+
+Q14.Write SQL Query to show the student list package wise in descending order? 
+
+mysql> select student.name as 'Student Name',placement.package as 'Minimum Package' from csjoin inner join student on student.sid=csjoin.sid inner join placement on placement.pid=csjoin.pid order by placement.package desc;
++--------------+-----------------+
+| Student Name | Minimum Package |
++--------------+-----------------+
+| rajesh       |          540000 |
+| sham         |          450000 |
+| ram          |          360000 |
+| ram          |          360000 |
+| ram          |          360000 |
+| sham         |          360000 |
+| sham         |          360000 |
+| sham         |          360000 |
+| rajesh       |          360000 |
+| rajesh       |          360000 |
+| rajesh       |          360000 |
++--------------+-----------------+
+
+Q15. Write SQL Query to show the company name with student count? Output like as 
+Company Name 	Student Count 
+TCS 	           2 
+Infosys 	   2
+
+mysql> select placement.comp_name,count(student.sid) as 'Student Count' from csjoin inner join placement on placement.pid=csjoin.pid inner join student on student.sid=csjoin.sid group by placement.comp_name;
++-----------+---------------+
+| comp_name | Student Count |
++-----------+---------------+
+| TCS       |             4 |
+| INFOSYS   |             5 |
+| Wipro     |             1 |
+| Jio       |             1 |
++-----------+---------------+
+
+Q16.Write SQL Query to show the Placement Count Course Wise? 
+Output Like as 
+
+Course Name 	Placed Student Count 
+JAVA 	             3 
+PHP 	             5 
+
+mysql> select course.course_name,count(placement.pid) as 'Placed Student Count' from csjoin inner join course on course.cid=csjoin.cid inner join placement on placement.pid=csjoin.pid group by course.course_name;
++-------------+----------------------+
+| course_name | Placed Student Count |
++-------------+----------------------+
+| .NET        |                    2 |
+| JAVA        |                    4 |
+| PHP         |                    5 |
++-------------+----------------------+
+ 
+Q16. Write SQL Query to show the student list course wise that got minimum single offer?
+
+mysql> select student.name,count(placement.pid) from csjoin left join student on student.sid=csjoin.sid right join placement on placement.pid=csjoin.pid group by student.name having count(placement.pid)<=1;
++------+----------------------+
+| name | count(placement.pid) |
++------+----------------------+
+| lahu |                    1 |
++------+----------------------+
+
+//Duplicate salary......
+
+mysql> select *from employee where salary in(select salary from employee group by salary having count(salary)>1);
++----+---------+------------------+------------+--------+
+| id | name    | email            | contact    | salary |
++----+---------+------------------+------------+--------+
+|  3 | ram     | ram@gmail.com    | 9074844748 | 700000 |
+|  5 | sitaram | dipak@gmail.com  | 9929903303 | 700000 |
+|  9 | sham    | sham@gmail.com   | 9029903303 | 900000 |
+| 10 | ramesh  | ganesh@gmail.com | 8029903303 | 900000 |
++----+---------+------------------+------------+--------+
+
+Q18. Write SQL Query to show placed student list of year 2020? 
+
+mysql> select student.name,placement.pdate from csjoin inner join student on csjoin.sid=student.sid inner join placement on placement.pid=csjoin.pid where placement.pdate between '2020.01.01' and '2020.12.30';
++--------+------------+
+| name   | pdate      |
++--------+------------+
+| ram    | 2020-01-01 |
+| sham   | 2020-01-01 |
+| rajesh | 2020-01-01 |
+| rajesh | 2020-01-01 |
+| ram    | 2020-02-01 |
+| sham   | 2020-02-01 |
+| sham   | 2020-02-01 |
+| ram    | 2020-02-01 |
+| rajesh | 2020-02-01 |
+| rajesh | 2020-03-05 |
++--------+------------+
+
+Q19. Write SQL Query show the placement count year wise? 
+Output like as 
+
+Year 	Placement Count 
+2020 	100 
+2021 	120 
+2022 	450 
+
+mysql> select placement.pdate as 'Year',count(student.sid) as 'Placement Count' from csjoin inner join placement on placement.pid=csjoin.pid inner join student on student.sid=csjoin.sid group by placement.pdate having count(student.sid);
++------------+-----------------+
+| Year       | Placement Count |
++------------+-----------------+
+| 2021-08-12 |               2 |
+| 2020-01-01 |               4 |
+| 2022-01-09 |               5 |
+| 2023-12-19 |               1 |
++------------+-----------------+
+
+
+ 
+
+
+

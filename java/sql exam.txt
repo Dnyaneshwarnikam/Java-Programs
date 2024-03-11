@@ -1,0 +1,172 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| alldata            |
+| class              |
+| company            |
+| criket             |
+| employee           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| player             |
+| practical          |
+| shcool             |
+| voterapps          |
++--------------------+
+12 rows in set (0.01 sec)
+
+mysql> use alldata;
+Database changed
+mysql> show tables
+    -> ;
++-------------------+
+| Tables_in_alldata |
++-------------------+
+| student           |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> drop table student;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> create table student(id int(5)primary key auto_increment,Name varchar(100),Email varchar(100),Contact varchar(100),Salary varchar(100));
+Query OK, 0 rows affected, 1 warning (0.04 sec)
+
+mysql> desc student;
++---------+--------------+------+-----+---------+----------------+
+| Field   | Type         | Null | Key | Default | Extra          |
++---------+--------------+------+-----+---------+----------------+
+| id      | int          | NO   | PRI | NULL    | auto_increment |
+| Name    | varchar(100) | YES  |     | NULL    |                |
+| Email   | varchar(100) | YES  |     | NULL    |                |
+| Contact | varchar(100) | YES  |     | NULL    |                |
+| Salary  | varchar(100) | YES  |     | NULL    |                |
++---------+--------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> alter table student add column address varchar(200);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++---------+--------------+------+-----+---------+----------------+
+| Field   | Type         | Null | Key | Default | Extra          |
++---------+--------------+------+-----+---------+----------------+
+| id      | int          | NO   | PRI | NULL    | auto_increment |
+| Name    | varchar(100) | YES  |     | NULL    |                |
+| Email   | varchar(100) | YES  |     | NULL    |                |
+| Contact | varchar(100) | YES  |     | NULL    |                |
+| Salary  | varchar(100) | YES  |     | NULL    |                |
+| address | varchar(200) | YES  |     | NULL    |                |
++---------+--------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> alter table student add column (Designation varchar(200),Adharno varchar(200),Panno varchar(200));
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| id          | int          | NO   | PRI | NULL    | auto_increment |
+| Name        | varchar(100) | YES  |     | NULL    |                |
+| Email       | varchar(100) | YES  |     | NULL    |                |
+| Contact     | varchar(100) | YES  |     | NULL    |                |
+| Salary      | varchar(100) | YES  |     | NULL    |                |
+| address     | varchar(200) | YES  |     | NULL    |                |
+| Designation | varchar(200) | YES  |     | NULL    |                |
+| Adharno     | varchar(200) | YES  |     | NULL    |                |
+| Panno       | varchar(200) | YES  |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+9 rows in set (0.00 sec)
+
+mysql> insert into student(id,name,contact)values(0,'Ram',9023456789);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select *from student;
++----+------+-------+------------+--------+---------+-------------+---------+-------+
+| id | Name | Email | Contact    | Salary | address | Designation | Adharno | Panno |
++----+------+-------+------------+--------+---------+-------------+---------+-------+
+|  1 | Ram  | NULL  | 9023456789 | NULL   | NULL    | NULL        | NULL    | NULL  |
++----+------+-------+------------+--------+---------+-------------+---------+-------+
+1 row in set (0.00 sec)
+
+mysql> insert into student values(0,'Sham','sham@gmail.com',7723784590,450000,'kkr','student',648338923883,'kk3456p');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student values(0,'Dinesh','Dinesh@gmail.com',9023784567,450000,'kkr','student',648338923883,'kk3456p');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student values(0,'Rajesh','Rajesh@gmail.com',8823784599,450000,'kkr','student',648338923883,'kk3456p');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student values(0,'Anil','Anil@gmail.com',8823784599,450000,'kkr','student',648338923883,'kk3456p');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student values(0,'Ram','Ram@gmail.com',8823784599,450000,'kkr','student',648338923883,'kk3456p');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student values(0,'Dinesh','Dinesh@gmail.com',9023784567,450000,'kkr','student',648338923883,'kk3456p');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select *from student;
++----+--------+------------------+------------+--------+---------+-------------+--------------+---------+
+| id | Name   | Email            | Contact    | Salary | address | Designation | Adharno      | Panno   |
++----+--------+------------------+------------+--------+---------+-------------+--------------+---------+
+|  1 | Ram    | NULL             | 9023456789 | NULL   | NULL    | NULL        | NULL         | NULL    |
+|  2 | Sham   | sham@gmail.com   | 7723784590 | 450000 | kkr     | student     | 648338923883 | kk3456p |
+|  3 | Dinesh | Dinesh@gmail.com | 9023784567 | 450000 | kkr     | student     | 648338923883 | kk3456p |
+|  4 | Rajesh | Rajesh@gmail.com | 8823784599 | 450000 | kkr     | student     | 648338923883 | kk3456p |
+|  5 | Anil   | Anil@gmail.com   | 8823784599 | 450000 | kkr     | student     | 648338923883 | kk3456p |
+|  6 | Ram    | Ram@gmail.com    | 8823784599 | 450000 | kkr     | student     | 648338923883 | kk3456p |
+|  7 | Dinesh | Dinesh@gmail.com | 9023784567 | 450000 | kkr     | student     | 648338923883 | kk3456p |
++----+--------+------------------+------------+--------+---------+-------------+--------------+---------+
+7 rows in set (0.00 sec)
+
+mysql> select distinct name from student;
++--------+
+| name   |
++--------+
+| Ram    |
+| Sham   |
+| Dinesh |
+| Rajesh |
+| Anil   |
++--------+
+5 rows in set (0.00 sec)
+
+mysql> delete from student where id=1;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select *from student;
++----+--------+------------------+------------+--------+---------+-------------+--------------+---------+
+| id | Name   | Email            | Contact    | Salary | address | Designation | Adharno      | Panno   |
++----+--------+------------------+------------+--------+---------+-------------+--------------+---------+
+|  2 | Sham   | sham@gmail.com   | 7723784590 | 450000 | kkr     | student     | 648338923883 | kk3456p |
+|  3 | Dinesh | Dinesh@gmail.com | 9023784567 | 450000 | kkr     | student     | 648338923883 | kk3456p |
+|  4 | Rajesh | Rajesh@gmail.com | 8823784599 | 450000 | kkr     | student     | 648338923883 | kk3456p |
+|  5 | Anil   | Anil@gmail.com   | 8823784599 | 450000 | kkr     | student     | 648338923883 | kk3456p |
+|  6 | Ram    | Ram@gmail.com    | 8823784599 | 450000 | kkr     | student     | 648338923883 | kk3456p |
+|  7 | Dinesh | Dinesh@gmail.com | 9023784567 | 450000 | kkr     | student     | 648338923883 | kk3456p |
++----+--------+------------------+------------+--------+---------+-------------+--------------+---------+
+6 rows in set (0.00 sec)
+
+mysql> update student set name='Akash',email='Akash@gmail.com' where id=3;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select *from student;
++----+--------+------------------+------------+--------+---------+-------------+--------------+---------+
+| id | Name   | Email            | Contact    | Salary | address | Designation | Adharno      | Panno   |
++----+--------+------------------+------------+--------+---------+-------------+--------------+---------+
+|  2 | Sham   | sham@gmail.com   | 7723784590 | 450000 | kkr     | student     | 648338923883 | kk3456p |
+|  3 | Akash  | Akash@gmail.com  | 9023784567 | 450000 | kkr     | student     | 648338923883 | kk3456p |
+|  4 | Rajesh | Rajesh@gmail.com | 8823784599 | 450000 | kkr     | student     | 648338923883 | kk3456p |
+|  5 | Anil   | Anil@gmail.com   | 8823784599 | 450000 | kkr     | student     | 648338923883 | kk3456p |
+|  6 | Ram    | Ram@gmail.com    | 8823784599 | 450000 | kkr     | student     | 648338923883 | kk3456p |
+|  7 | Dinesh | Dinesh@gmail.com | 9023784567 | 450000 | kkr     | student     | 648338923883 | kk3456p |
++----+--------+------------------+------------+--------+---------+-------------+--------------+---------+
+6 rows in set (0.00 sec)
